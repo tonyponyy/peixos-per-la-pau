@@ -1,0 +1,114 @@
+#pissarra{
+  width: 800px;
+  height: 400px;
+  border: 1px solid black; 
+
+}
+
+.color{
+    border: 1px solid black;
+    width: 80px;
+  height: 60px;
+  border-radius: 4px;
+  margin: 3px;
+}
+
+#fila1{
+  display: flex;
+  justify-content: center;
+}
+#fila2{
+ display: flex; 
+  justify-content: center;
+}
+
+
+body{
+  background-color: lightgrey;
+}
+
+#color1{
+  background-color: #19394D;
+}
+#color1{
+  background-color: #19394D;
+}
+#color2{
+  background-color: #38786F;
+}
+#color3{
+  background-color: #7EB97A;
+}
+#color4{
+  background-color: #EEF2AE;
+}
+#color5{
+  background-color: #FCB475;
+}
+#color6{
+  background-color: #D13E58;
+}
+#color7{
+  background-color: #772858;
+}
+#color8{
+  background-color: #48284F;
+}
+#color9{
+  background-color: #26222F;
+}
+#color10{
+  background-color: #535C7D;
+}
+#color11{
+  background-color: #5C9BCA;
+}
+#color12{
+  background-color: #9AF3F6;
+}
+#color13{
+  background-color: #ffffff;
+}
+#color14{
+  background-color: #000000;
+}
+
+#pissara_contenidor{
+  display:flex;
+   justify-content: center;
+}
+
+#eines,#eines2{
+  display:inline-block
+}
+
+#pissarra{
+
+  background-image: url("../imatges/canvasFons.jpg");
+   background-size: cover;
+}
+
+.eina{
+  background-color: white;
+}
+
+.seleccio_eina{
+  background-color: Gainsboro;
+  border-style: solid;
+  border-width: 1px;
+
+}
+
+.seleccio_color{
+  border-color:  white;
+  border-style: solid;
+  border-width: 1px;
+  
+}
+
+.peix{
+  width: 25%;
+  height: 25%;
+}
+
+

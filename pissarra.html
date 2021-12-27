@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/pissarra.css" type="text/css" media="all" />
+    <title>Dibuixa un peix</title>
+</head>
+<body onload="comenzar()">
+    <div id="pissara_contenidor">
+        <div id="eines2">
+           <div> <img  src="imatges/esborrar.svg" id="goma"class="color eina "  onclick="seleccioEina(this),gomaDeBorrar()" ></img> </div>
+           <div> <img   src="imatges/cubeta.svg" id="cubeta"class="color eina"  onclick="seleccioEina(this),cubeta()" ></img> </div>
+           <div> <img   src="imatges/enviar.svg" id="guardar"class="color eina"  onclick=" seleccioEina(this) ,Guardar()" ></img>   </div>
+        </div>
+            <div id="eines1">
+                <div>  <img  src="imatges/petit.svg" id="gruix_petit"class="color eina seleccio_eina" onclick=" seleccioEina(this) ,CambiaGruix(1)" ></img></div>
+                <div>  <img  src="imatges/mitja.svg" id="gruix_mitja" class="color eina" onclick="seleccioEina(this) ,CambiaGruix(5)" ></img></div>
+                <div> <img   src="imatges/gran.svg" id="gruix_gran"class="color eina"  onclick=" seleccioEina(this),CambiaGruix(15)" ></img></div>
+                <div> <img   src="imatges/eliminar.svg" id="netejar"class="color eina"  onclick="seleccioEina(this), Netejar()" ></img></div>
+         </div>
+         <canvas width="800" height="400" id="pissarra"></canvas>
+    </div>     
+
+        <div id="colors">
+            <div id="fila1">
+                <div id="color1" class="color" onclick=" seleccioColor(this), CambiaColor('#19394D')"></div>
+                <div id="color2" class="color" onclick=" seleccioColor(this),CambiaColor('#38786F')"></div>
+                <div id="color3" class="color" onclick=" seleccioColor(this),CambiaColor('#7EB97A')"></div>
+                <div id="color4" class="color" onclick=" seleccioColor(this),CambiaColor('#EEF2AE')"></div>
+                <div id="color5" class="color" onclick=" seleccioColor(this),CambiaColor('#FCB475')"></div>
+                <div id="color6" class="color" onclick=" seleccioColor(this),CambiaColor('#D13E58')"></div>
+                <div id="color7" class="color" onclick=" seleccioColor(this),CambiaColor('#772858')"></div>     
+            </div>
+            <div id="fila2">
+                <div id="color8" class="color" onclick="seleccioColor(this), CambiaColor('#48284F')"></div>
+                <div id="color9" class="color" onclick="seleccioColor(this),CambiaColor('#26222F')"></div>
+                <div id="color10" class="color" onclick="seleccioColor(this),CambiaColor('#535C7D')"></div>
+                <div id="color11" class="color" onclick="seleccioColor(this),CambiaColor('#5C9BCA')"></div>
+                <div id="color12" class="color" onclick="seleccioColor(this),CambiaColor('#9AF3F6')"></div>
+                <div id="color13" class="color" onclick="seleccioColor(this),CambiaColor('#FFFFFF')"></div>     
+                <div id="color14" class="color seleccio_color" onclick="seleccioColor(this),CambiaColor('#000000')"></div>     
+                
+            </div>
+        </div>
+</body>
+<script src="./js/pissarra.js"></script>
+</html>
