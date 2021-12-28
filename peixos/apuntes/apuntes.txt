@@ -1,0 +1,42 @@
+creem el model de els peixos :
+
+php artisan make:model fish -m
+
+afegim a la migració :
+
+    public function up()
+{
+    Schema::create('fish', function (Blueprint $table) {
+        $table->id();
+        $table->string('imatge');
+        $table->string('nom');
+        $table->string('text');
+        $table->number('id_peixera');
+        $table->timestamps();
+    });
+}
+
+//instalamos el php mysql 
+
+php 7.4 sudo apt-get install php7.4-mysql
+
+// creamos el controlador <-- asi no
+php artisan make:controller fishbowl
+
+// cremos el controlador
+
+php artisan make:controller Api/V1/fishController --api --model=fish
+php artisan make:controller Api/V1/fishbowlController --api --model=fishbowl
+
+// creamos las rutas :
+
+ACORDARNOS DE INCLUIR EL CONTROLADOR EN LA HOJA DE rutas
+
+---> use App\Http\Controllers\Api\V1\fishController;
+
+Y DEFINIMOS LAS RUTAS TAL QUE ASÍ :
+---> Route::get('/algo', [fishController::class, 'get_fish_by_fishbowl']);
+
+TRUNCATE TABLE PARA RSETEAR AUTOINCREMENTO
+
+TRUNCATE TABLE peixos.fish;

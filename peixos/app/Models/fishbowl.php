@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class fishbowl extends Model
 {
+
     use HasFactory;
+    public $timestamps = false;
 }
