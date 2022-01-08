@@ -40,3 +40,26 @@ Y DEFINIMOS LAS RUTAS TAL QUE ASÍ :
 TRUNCATE TABLE PARA RSETEAR AUTOINCREMENTO
 
 TRUNCATE TABLE peixos.fish;
+
+Agregamos la columna admin a users
+
+php artisan make:migration add_admin_to_users
+
+Devolver por JSON :
+
+  public function get_fish_by_fishbowl($id){
+        $peixos = Fish::where('id_peixera', $id)->get();
+        $peixera = Fishbowl::where('id',$id)->get();
+        
+        return response()->json([
+            'peixos' => $peixos,
+            'peixera' => $peixera,
+        ]);
+
+    }
+
+
+Agregamos la columna validated a users
+
+php artisan make:migration add_validated_to_users
+

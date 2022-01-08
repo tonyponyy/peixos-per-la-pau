@@ -65,10 +65,46 @@ function Netejar() {
   ctx.fillRect(0, 0, 800, 400);
 }
 
-function Guardar() {
+function Guardar(){
+  document.getElementById('enviar').style.visibility = "visible"
+}
+function Ocultar(){
+  document.getElementById('enviar').style.visibility = "hidden"
+}
+
+
+function Enviar() {
+  text = document.getElementById("desitg").value
+  nom = document.getElementById("nom").value
+  console.log(nom)
   var copia = document.getElementById("pissarra");
   imatge = copia.toDataURL("image/png");
-  Imprimeix();
+  $.ajax({
+    url:'http://127.0.0.1:8000/api/guardar_peix',
+    data:{
+      'imatge':imatge,
+      "text": text ,
+      "nom": nom
+  
+  },
+    type:'post',
+    success: function (response) {
+                alert(response.message);
+            window.location.href = "index.html";
+
+    },
+
+    error:function(){
+      alert("No s'ha pogut enviar el peix, torna a intentar-ho en uns minuts.")
+      window.location.href = "index.html";
+
+    }
+ });
+
+
+
+
+
 }
 
 function Imprimeix() {

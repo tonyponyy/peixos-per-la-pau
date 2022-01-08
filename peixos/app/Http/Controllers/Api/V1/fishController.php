@@ -57,7 +57,7 @@ class fishController extends Controller
         }
 
         if ($res) {
-            return response()->json(['message' => 'ok'.$fishbowl->fons], 201);
+            return response()->json(['message' => 'Peix guardat a la peixera '.$fish->id_peixera], 201);
         }
         return response()->json(['message' => 'error'], 500);
     
@@ -92,14 +92,66 @@ class fishController extends Controller
      * @param  \App\Models\fish  $fish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(fish $fish)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $fish = Fish::find($id);
+        $fish->delete();
     }
 
     public function get_fish_by_fishbowl($id){
-        return "hola pruevas".$id;
+        $peixos = Fish::where('id_peixera', $id)->get();
+        $peixera = Fishbowl::where('id',$id)->get();
+        
+        return response()->json([
+            'peixos' => $peixos,
+            'peixera' => $peixera,
+        ]);
+
     }
+
+    public function get_fish_invisible(){
+        $peixos = Fish::where('visible', false)->get();
+        
+        return response()->json([
+         'peixos' => $peixos
+
+        ]);
+
+    }
+
+
+
+    public function set_fish_visible(Request $request){
+        $id = $request->input('id');
+        $fish = Fish::where('id', $id)->first();
+        $fish->visible = !$fish->visible;
+        $res = $fish->save();
+        if ($res) {
+            return response()->json(['message' => 'ok'], 201);
+        }
+        return response()->json(['message' => 'error'], 500);
+    }
+
+
+
+    public function last_fishbowl(){
+        $last_fishbowl = (Fishbowl::latest('id')->first())->id;
+        return response()->json([
+            'id' => $last_fishbowl
+        ]);
+    }
+
+    public function last_5_fishbowl(){
+        $fishbowls = Fishbowl::latest()
+     ->take(5)
+     ->get();
+     return response()->json([
+         $fishbowls
+    ]);
+
+    }
+
 
 
 
