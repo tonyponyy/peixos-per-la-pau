@@ -16,7 +16,11 @@ body{
 #pissarra{
   width: 800px;
   height: 400px;
-  border: 1px solid black; 
+  border: 1px solid black;
+   image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 
 }
 

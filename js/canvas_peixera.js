@@ -1,5 +1,6 @@
 var peixos = [];
 bombolles = [];
+counter = 0;
 var peixera_canvas;
 var respuesta;
 var ANGULO = 32;
@@ -46,6 +47,11 @@ fons1_img.src = "imatges/fons1.png";
 
 var fons2_img = new Image();
 fons2_img.src = "imatges/fons2.png";
+
+var onada_img = new Image();
+onada_img.src = "imatges/onada.png";
+
+
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -141,14 +147,14 @@ function moure_peixos() {
 
   fons();
   ctx.save();
-
+  onades();
   peixos.forEach(function (peix) {
     if (chance(1)) {
       x = peix.x;
       y = peix.y;
       var bom = new Bombolla(
-        x - 300,
-        y - 300 * peix.zoom,
+        x+220*peix.zoom ,
+        y-80*peix.zoom ,
         Math.random(2),
         1 + Math.random(4)
       );
@@ -163,14 +169,20 @@ function moure_peixos() {
         peix.dy = -peix.dy;
       }
     }
-    if (peix.y > canvas.height || peix.y < 200) {
+    if (peix.y > canvas.height || peix.y < 40) {
       peix.dy = -peix.dy;
 
       if (chance(50)) {
         peix.dx = -peix.dx;
       }
+
+ 
+
     }
-    if (peix.y > canvas.height + 1 || peix.y < 199) {
+
+
+
+    if (peix.y > canvas.height + 1 || peix.y < 39) {
       peix.y = Math.random() * canvas.height;
       // ctx.save();
       //ctx.translate()
@@ -178,6 +190,7 @@ function moure_peixos() {
       //  gira=-1
       //   ctx.scale(-1, 1);
     }
+    
     drawRotatedImage(peix.imatge, peix.x, peix.y, -20 + peix.angle, peix.zoom);
     //ctx.drawImage(peix.imatge, peix.x, peix.y, 800*peix.zoom, 400*peix.zoom);
 
@@ -201,9 +214,26 @@ function moure_peixos() {
       bombolles.splice(i, 1);
     }
   }
-
+  
   window.requestAnimationFrame(moure_peixos);
+  //contador de frames
+  counter++;
 }
+
+function onades(){
+  ample = onada_img.width
+  n_onades = canvas.width/ample
+  for (let i = -2; i < n_onades; i++) {
+    ctx.drawImage(onada_img, ample*i+(counter%ample), 0);
+    
+  }
+
+  
+  
+}
+
+
+
 Y = 200;
 function fons() {
   //peixera_canvas = ("000000"+((parseInt(Math.random()*999999)).toString())).substr(5)
@@ -296,8 +326,8 @@ function fons() {
   x = -(parseInt(peixera_canvas.substr(5, 2)) / 100) * 759;
   y = (parseInt(peixera_canvas.substr(0, 2)) / 100) * 30;
   ctx.drawImage(fons_peixera, x + 0, canvas.height-100 + y);
-  ctx.drawImage(fons_peixera, x + 800, canvas.height-100 + y);
-  ctx.drawImage(fons_peixera, x + 1600, canvas.height-100 + y);
+  ctx.drawImage(fons_peixera, x + 1000, canvas.height-100 + y);
+  ctx.drawImage(fons_peixera, x + 2000, canvas.height-100 + y);
   // alga 1
   alga1 = parseInt(peixera_canvas.substr(5, 2));
   posX1 = (parseInt(peixera_canvas.substr(2, 2)) / 100) * 924 - 34;
@@ -317,13 +347,14 @@ function fons() {
 }
 
 //rotacio dels peixos
-
+rectX = 0;
+rectY = 0;
 var TO_RADIANS = Math.PI / 180;
 
 function drawRotatedImage(image, x, y, angle, zoom) {
   ctx.save();
 
-  ctx.translate(x, y);
+  ctx.translate(x,y);
 
   ctx.rotate(angle * TO_RADIANS);
 
@@ -333,8 +364,8 @@ function drawRotatedImage(image, x, y, angle, zoom) {
   //ctx.drawImage(image, -(image.width/2), -(image.height/2), 800*zoom, 400*zoom);
   ctx.drawImage(
     image,
-    -(image.width / 2),
-    -(image.height / 2),
+    -(image.width*zoom / 2),
+    -(image.height*zoom / 2),
     800 * zoom,
     400 * zoom
   );

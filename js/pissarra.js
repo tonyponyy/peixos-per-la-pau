@@ -136,11 +136,19 @@ function comenzar() {
   CanvasPos = posicioAbsoluta(document.getElementById("pissarra"));
   Pissarra = document.getElementById("pissarra");
   ctx = Pissarra.getContext("2d");
+  ctx.mozImageSmoothingEnabled = false;
+  ctx.imageSmoothingQuality = "low";
+  ctx.webkitImageSmoothingEnabled = false;
+  ctx.msImageSmoothingEnabled = false;
+  ctx.imageSmoothingEnabled = false;
+
+ 
 
   //Escoltem els events del ratolí
+  document.addEventListener("mouseup", aixeca_ratoli, false);
   document.addEventListener("mousedown", pulsa_ratoli, false);
   document.addEventListener("mousemove", mou_ratoli, false);
-  document.addEventListener("mouseup", aixeca_ratoli, false);
+ 
 }
 
 function pulsa_ratoli(capturo) {
@@ -155,7 +163,7 @@ function pulsa_ratoli(capturo) {
       ctx.globalCompositeOperation = "source-over";
       ctx.beginPath();
       //comencem a traçar la linea i l'induquem la posició del ratolí
-      ctx.moveTo(PosRatoliX, PosRatoliY);
+      ctx.moveTo(parseInt(PosRatoliX), parseInt(PosRatoliY));
 
       break;
     case 2:

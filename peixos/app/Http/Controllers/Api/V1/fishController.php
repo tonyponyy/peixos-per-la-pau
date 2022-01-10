@@ -143,8 +143,11 @@ class fishController extends Controller
     }
 
     public function last_5_fishbowl(){
-        $fishbowls = Fishbowl::latest()
+
+        $fishbowls = Fishbowl::first()
+        ->orderBy('id', 'desc')
      ->take(5)
+
      ->get();
      return response()->json([
          $fishbowls
