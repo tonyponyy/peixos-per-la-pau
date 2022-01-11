@@ -155,6 +155,16 @@ class fishController extends Controller
 
     }
 
+    public function totes_les_peixeres(){
+
+        $peixeres = Fishbowl::all();
+        return response()->json([
+             $peixeres
+        ]);
+        
+
+    }
+
 
 
 

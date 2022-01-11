@@ -33,6 +33,8 @@ Route::post('/guardar_peix', [fishController::class, 'store']);
 Route::get('/last_fishbowl/', [fishController::class, 'last_fishbowl']);
 // mostra tots els peixos de 10 en 10
 Route::get('/last_5_fishbowl/', [fishController::class, 'last_5_fishbowl']);
+//mostra totes les peixeres 
+Route::get('/totes_les_peixeres/', [fishController::class, 'totes_les_peixeres']);
 
 //oculta el peix
 Route::post('/visibility_fish', [fishController::class, 'set_fish_visible'])->middleware('require_token');
