@@ -4,10 +4,27 @@
   src: url("../fonts/lexie.ttf");
 }
 
+#intro{
+  font-size: 23px;
+  width: 82%;
+  margin: auto;
+  margin-bottom:32px;
+  margin-top:32px;
+  background-color: white;
+  border-radius:23px;
+  padding: 22px;
+}
+
+#intro:first-letter{
+  font-size: 32px;
+  font-weight: bolder;
+}
+
 #capcelera{
   display: flex;
   margin:0.5%;
   margin-bottom: 2%;
+  margin-top: 22px;
   justify-content: center;
   
 }
@@ -65,6 +82,7 @@ body{
 #barra_superior{
   background-color: white;
   padding: 12px;
+  height: 73px;
 }
 
 a{
@@ -167,6 +185,26 @@ h3{
   text-align:center;
   margin-left: 6%;
    transform: rotate(-2deg);
+}
+#panell_menjar{
+  font-size: 23px;
+  color:black;
+  margin-left: 5%;
+  background-color: #ad6914;
+  width: 23%;
+  border-radius: 32px;
+}
+
+#panell_menjar:hover{
+  color:black;
+  background-color: orange;
+}
+
+
+#panell_menjar img{
+  width: 25px;
+  margin-right: 12px;
+  margin-bottom: 12px;
 }
 
 

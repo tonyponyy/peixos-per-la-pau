@@ -1,6 +1,17 @@
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+
 var peixos = [];
 bombolles = [];
+pinsos = [];
 counter = 0;
+friccio = 0;
+limitX1= 80
+limitX2= canvas.width-80;
+limitY1=60;
+limitY2=550;
+
 var peixera_canvas;
 var respuesta;
 var ANGULO = 32;
@@ -24,6 +35,39 @@ class Bombolla {
     this.velocitat = velocitat;
   }
 }
+
+  class Pinso {
+    constructor(x, y, zoom, velocitat) {
+      this.x = x;
+      this.y = y;
+      this.zoom = zoom;
+      this.velocitat = velocitat;
+    }
+}
+
+function llença_pinso(){
+  
+  if (pinsos.length == 0){
+
+    for (let index = 0; index < 50; index++) {
+
+      var pin = new Pinso(
+        canvas.width/3 + Math.random()*canvas.width/3 ,
+        0 ,
+        Math.random(2),
+         Math.random()*1
+      )
+    
+    pinsos.push(pin);
+      
+    }
+
+
+  }
+
+  
+}
+
 
 //imatges
 
@@ -51,10 +95,12 @@ fons2_img.src = "imatges/fons2.png";
 var onada_img = new Image();
 onada_img.src = "imatges/onada.png";
 
+var pinso_img = new Image();
+pinso_img.src = "imatges/pinso.png";
 
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+
+
 //fondo cargando
 ctx.fillStyle = "lightblue";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -78,10 +124,10 @@ function activar_peixera(id) {
         var imatge_peix = new Image(800, 400);
         imatge_peix.src = peix.imatge;
         zoom = Math.random() * (0.5 - 0.2) + 0.2;
-        x = Math.random() * canvas.width;
-        y = Math.random() * canvas.height;
-        dx = Math.random() * 0.9;
-        dy = Math.random() * 2 - Math.random() * 2;
+        x = (Math.random() * (limitX2-limitX1)+limitX1)
+        y = (Math.random() * (limitY2-limitY1)+limitY1)
+        dx = Math.random() * 2 - Math.random() * 2;
+        dy = Math.random() * 0.9 - Math.random() * 0.9;
         angle = Math.random() * 40;
         var peix_a_guardar = new Peix(imatge_peix, x, y, zoom, dx, dy, angle);
         if (peix.visible) {
@@ -149,27 +195,38 @@ function moure_peixos() {
   ctx.save();
   onades();
   peixos.forEach(function (peix) {
-    if (chance(1)) {
+   c_bombolles = debug? 100:1;
+    if (chance(c_bombolles)) {
       x = peix.x;
       y = peix.y;
-      var bom = new Bombolla(
-        x+220*peix.zoom ,
-        y-80*peix.zoom ,
-        Math.random(2),
-        1 + Math.random(4)
-      );
+      if (peix.dx>0){
+        var bom = new Bombolla(
+          x+220*peix.zoom ,
+          y-80*peix.zoom ,
+          Math.random(2),
+          1 + Math.random(4)
+        )
+      }else{
+        var bom = new Bombolla(
+          x-200*peix.zoom ,
+          y-80*peix.zoom ,
+          Math.random(2),
+          1 + Math.random(4)
+        )
+      }
+      ;
       bombolles.push(bom);
     }
 
     gira = 1;
-
-    if (peix.x > canvas.width + 200 || peix.x < 0) {
+    //troba el limit horitzonal de la peixera
+    if (peix.x > limitX2 || peix.x < limitX1) {
       peix.dx = -peix.dx;
       if (chance(50)) {
         peix.dy = -peix.dy;
       }
     }
-    if (peix.y > canvas.height || peix.y < 40) {
+    if (peix.y > limitY2 || peix.y < limitY1) {
       peix.dy = -peix.dy;
 
       if (chance(50)) {
@@ -182,20 +239,105 @@ function moure_peixos() {
 
 
 
-    if (peix.y > canvas.height + 1 || peix.y < 39) {
-      peix.y = Math.random() * canvas.height;
-      // ctx.save();
-      //ctx.translate()
-      // ctx.translate(canvas.width, 0);
-      //  gira=-1
-      //   ctx.scale(-1, 1);
+    if (peix.y > limitY2 + 1 ) {
+      peix.y =  peix.y-10
+    }
+    if (peix.y < limitY1 - 1 ) {
+      peix.y =  peix.y+10
+    }
+    if (peix.x > limitX2 + 1 ) {
+      peix.x =  peix.x-10
+    }
+    if (peix.x < limitX1 - 1 ) {
+      peix.x =  peix.x+10
+    }
+
+
+
+
+    if (!peix.dx < 0.1 && !peix.dx > -0.1){
+     peix.angle = angulo(Math.abs(peix.dx),peix.dy)
+    
     }
     
-    drawRotatedImage(peix.imatge, peix.x, peix.y, -20 + peix.angle, peix.zoom);
+  
+    //cambia la ruta del peix aleatoriament  cada x temps
+    if (counter%15 == 0 && chance(5)){
+    peix.dx += (Math.random() * 0.9 - Math.random() * 0.9)/4
+    peix.dy += (Math.random() * 2 - Math.random() * 2)/4;
+    //limitadors de velocitat  
+    if (peix.dy>0.9){
+      peix.dy = 0.9
+    }
+    if (peix.dy<0.9){
+      peix.dy = -0.9
+    }
+    if (peix.dx>0.9){
+      peix.dx = 0.9
+    }
+    if (peix.dx<0.9){
+      peix.dx = -0.9
+    }
+
+    //el peix dona una volta aleatoriament cada x temps
+     }
+     if (counter%120 == 0 && chance(1)){
+      peix.dy = -peix.dy 
+     }
+
+
+     // menjar pinsos
+     if(pinsos[0]){
+      if (chance(5)){
+        py= pinsos[0].y
+        px= pinsos[0].x
+        peix.dy= -(peix.y-py)/70
+        peix.dx= -(peix.x-px)/70
+      } 
+    
+
+
+      if (peix.x < pinsos[0].x + 80 &&
+        peix.x + 80 > pinsos[0].x &&
+        peix.y < pinsos[0].y + 80 &&
+        80 + peix.y > pinsos[0].y) {
+          pinsos.splice(0, 1)
+     }
+
+
+
+
+     }
+    
+    drawRotatedImage(peix.imatge, peix.x, peix.y, -20 + peix.angle, peix.zoom,peix.dx);
+    ctx.restore();
+    
     //ctx.drawImage(peix.imatge, peix.x, peix.y, 800*peix.zoom, 400*peix.zoom);
 
     peix.x += peix.dx;
     peix.y += peix.dy;
+
+     if (peix.dx>0){
+       peix.dx -=friccio;
+     }
+     if (peix.dx<0){
+      peix.dx +=friccio;
+    }
+    if (peix.dy>0){
+      peix.dy -=friccio;
+    }
+    if (peix.dy<0){
+     peix.dy +=friccio;
+   }
+
+
+    if (debug){
+
+      ctx.fillStyle = "#FFBD16";
+    ctx.fillRect(peix.x, peix.y, 10, 10);
+    }
+    
+
   });
   ctx.restore();
   for (let i = 0; i < bombolles.length; i++) {
@@ -214,10 +356,39 @@ function moure_peixos() {
       bombolles.splice(i, 1);
     }
   }
+
+  for (let i = 0; i < pinsos.length; i++) {
+    if (chance(20)) {
+      pinsos[i].x += Math.random();
+    }
+    pinsos[i].y = pinsos[i].y + pinsos[i].velocitat;
+    ctx.drawImage(
+      pinso_img,
+      pinsos[i].x,
+      pinsos[i].y,
+      10 * pinsos[i].zoom,
+      10 * pinsos[i].zoom
+    );
+    if (pinsos[i].y > canvas.height) {
+      pinsos.splice(i, 1);
+    }
+  }
+
+
   
-  window.requestAnimationFrame(moure_peixos);
+  
   //contador de frames
   counter++;
+  if (debug){
+    ctx.fillStyle = "#FFBD16";
+    ctx.fillRect(limitX1, 200, 10, 10);
+    ctx.fillRect(limitX2, 200, 10, 10);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(200, limitY1, 10, 10);
+    ctx.fillRect(200, limitY2, 10, 10);
+  }
+  window.requestAnimationFrame(moure_peixos);
+
 }
 
 function onades(){
@@ -351,26 +522,35 @@ rectX = 0;
 rectY = 0;
 var TO_RADIANS = Math.PI / 180;
 
-function drawRotatedImage(image, x, y, angle, zoom) {
-  ctx.save();
+function drawRotatedImage(image, x, y, angle, zoom,dx) {
+ctx.save();
+
+  
+
 
   ctx.translate(x,y);
-
   ctx.rotate(angle * TO_RADIANS);
 
   ctx.imageSmoothingQuality = "low";
   ctx.imageSmoothingEnabled = false;
   //ctx.drawImage(image, -(image.width/2)*zoom, -(image.height/2)*zoom);
   //ctx.drawImage(image, -(image.width/2), -(image.height/2), 800*zoom, 400*zoom);
-  ctx.drawImage(
-    image,
-    -(image.width*zoom / 2),
-    -(image.height*zoom / 2),
-    800 * zoom,
-    400 * zoom
-  );
+  
+    if (dx<0){
+      ctx.scale(-1,1);
+    }
+    ctx.drawImage(
+      image,
+      (image.width*zoom / 2),
+      (image.height*zoom / 2),
+      -800 * zoom,
+      -400 * zoom
+    );
 
-  ctx.restore();
+
+
+ctx.restore();
+
 }
 
 function chance(percentatge) {
@@ -382,8 +562,41 @@ function chance(percentatge) {
   }
 }
 
-//fullscreen
-window.onload = window.onresize = function () {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-};
+angle_bloquejat = 45
+rectificacio = 180
+function  angulo(x,y){
+
+    if (x ==0 && y==0){
+        return 0
+    }
+
+    x ==0? x=x+1:"";
+    y ==0? y=y+1:"";
+    
+    if (x>0 && y>0){
+        // entre 0 y 90
+        res = (x*(90/(x+y))+rectificacio)%angle_bloquejat
+
+        return parseInt(res)
+    }
+    if (x>0 && y<0){
+        //entre 90 y 180
+        res = x*(90/(x+(-y)))
+        return (parseInt(180-res)-rectificacio)%angle_bloquejat
+    }
+    if (x<0 && y>0){
+        // entre 180 y 270
+        res = x*(90/((-x)+y))
+        return (parseInt(180+(-res))-rectificacio)%angle_bloquejat
+    }
+    if (x<0 && y<0){
+        // entre 270 y 360
+        res = x*(90/(-(-x-y)))
+        return (parseInt(360-res)-rectificacio)%-angle_bloquejat
+    }
+  
+}
+
+debug = false;
+
+

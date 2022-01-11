@@ -48,13 +48,20 @@ $.ajax({
     resposta.forEach(function(element) {
         peixeresHtml += '<option value="'+element.id+'">Peixera numero '+element.id+'</option>'
       });
+      peixeresHtml += '<option value="totes">Veure totes les peixeres</option>'
       document.getElementById("select_peixera").innerHTML = peixeresHtml;
 
  }
 
  function peixera(id){
+   if (id != null && id!="totes" ){
     sessionStorage.setItem('id_peixera', id); 
     window.location.href = "index.html";
+   }
+   if (id=="totes"){
+    window.location.href = "totes.html";
+   }
+    
  }
 
  document.getElementById("select_peixera").onchange = function(){

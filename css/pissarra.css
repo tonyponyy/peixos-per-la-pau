@@ -14,13 +14,15 @@ body{
 
 
 #pissarra{
+  margin-top:2px;
   width: 800px;
   height: 400px;
-  border: 1px solid black;
+  border: 2px solid black;
    image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-crisp-edges;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  border-radius: 6px;
 
 }
 
@@ -103,8 +105,10 @@ body{
 
 #pissarra{
 
-  background-image: url("../imatges/canvasFons.jpg");
-   background-size: cover;
+   background-image: url("../imatges/onada.png");*/
+   background-repeat:no-repeat;
+   background-size:auto;
+  background-position-y: 12px;
 }
 
 .eina{
@@ -157,3 +161,31 @@ body{
   margin: 12px;
   margin-top: 22px;
 }
+
+#marc_plantilla{
+ position: fixed;
+ top:0%;
+ left: 0%; 
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+    
+}
+
+#plantilla{
+  position: relative;
+  top:10%;
+  left:20%;
+  text-align: center;
+  background-color: lightblue;
+  width: 60%;
+  padding: 40px;
+  border-radius: 34px; 
+  border: 2px solid black;
+}
+
+body{
+  background-color: #d1ebf7;
+}
+
+
