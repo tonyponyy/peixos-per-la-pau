@@ -4,9 +4,17 @@
   src: url("../fonts/lexie.ttf");
 }
 
-#link_panel{
-  text-align: center;
+:root {
+  --fons_pagina: #d8e6ad;
+  --fons_capcellera : #e6bbad;
+  --fons_container : lightblue;
+  --fons_footer:#e6bbad;
+    
 }
+
+
+
+
 
 #intro{
   font-size: 23px;
@@ -26,9 +34,7 @@
 
 #capcelera{
   display: flex;
-  margin:0.5%;
   margin-bottom: 2%;
-  margin-top: 22px;
   justify-content: center;
   
 }
@@ -51,9 +57,11 @@
 }
 
 #select_peixera, #capcelera a{
+    
   width: 20%;
   margin: 2px;
-    height: 52px  
+    height: 52px;
+  margin-top: 22px;
 }
 
 #capcelera a{
@@ -79,12 +87,15 @@ h4{
 }
 
 body{
-  background-color: lightblue;
+  
+  background-image: url("/imatges/peix.png");
+  background-color: var(--fons_pagina);
+    
 }
 
 
 #barra_superior{
-  background-color: white;
+  background-color: var(--fons_capcellera);
   padding: 12px;
   height: 73px;
 }
@@ -98,6 +109,11 @@ a{
 
 #barra_dreta{
   text-align: center;
+  background-color: var(--fons_container);
+  width: 95%;
+  margin: auto;
+  box-shadow: 6px 5px 5px rgba(0,0,0,0.3),
+             -6px 5px 5px rgba(0,0,0,0.3);
 }
 
 
@@ -124,6 +140,8 @@ a{
    #canvas{
      width: 1200px;
      height: 600px;
+     width: 90%;
+     height: 90%;
      border-bottom-right-radius: 30px;
      border-bottom-left-radius: 30px;
      border-left: 3px solid black;
@@ -131,31 +149,6 @@ a{
      border-bottom: 3px solid black;
    }
    
-
-   
-    
-
-
-
-
-
-
-
-
-
-.fons_ca{
-  background-color: red;
-}
-
-#quisoc{
-  text-align: center;
-  margin-top: 12px;
-  font-size: small;
-  font-weight: bold;
-
-}
-
-
 
 .targeta_peix{
 
@@ -236,3 +229,37 @@ h1{
    margin-top:1%;
   text-align: center;
 }
+
+#temps{
+  font-size: 17px;
+}
+
+#peu{
+  margin-top: 1%;
+  background-color: var(--fons_footer);
+  color:white;
+  border-top:3px solid black;
+  
+
+}
+#peu a{
+
+  color:black;
+  font-size: 14px;
+}
+#quisoc{
+  margin-left: 27%;
+  margin-right: 20%
+}
+
+#imatge_peu {
+  width: 12%;
+  margin-top: 12px;
+  margin-left: 42%;
+
+  filter: drop-shadow(2px 2px  white) 
+          drop-shadow(-2px -2px  white);
+ 
+}
+
+
