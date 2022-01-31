@@ -1,7 +1,7 @@
 
 
 $.ajax({
-    url:'http://127.0.0.1:8000/api/totes_les_peixeres',
+    url:direccio+'totes_les_peixeres',
 
     type:'get',
     success: function (response) {

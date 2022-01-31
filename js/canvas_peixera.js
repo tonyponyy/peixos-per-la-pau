@@ -73,34 +73,33 @@ function llença_pinso(){
 //imatges
 
 var fons_peixera = new Image();
-fons_peixera.src = "imatges/terra_peixera.png";
+
 
 var bombolla_img = new Image();
-bombolla_img.src = "imatges/bombolla.png";
+
 
 var alga = new Image();
-alga.src = "imatges/alga.png";
+
 
 var alga2_img = new Image();
-alga2_img.src = "imatges/alga2.png";
+
 
 var coral_img = new Image();
-coral_img.src = "imatges/coral.png";
+
 
 var castell_img = new Image();
-castell_img.src = "imatges/castell.png";
+
 
 var fons1_img = new Image();
-fons1_img.src = "imatges/fons1.png";
+
 
 var fons2_img = new Image();
-fons2_img.src = "imatges/fons2.png";
 
 var onada_img = new Image();
-onada_img.src = "imatges/onada.png";
+
 
 var pinso_img = new Image();
-pinso_img.src = "imatges/pinso.png";
+
 
 
 
@@ -114,6 +113,31 @@ ctx.textAlign = "center";
 ctx.font = "30pt Verdana";
 ctx.fillStyle = "blue";
 ctx.fillText("Carregant peixera...", centerX, centerY);
+
+fons_peixera.src = "imatges/terra_peixera.png";
+
+
+bombolla_img.src = "imatges/bombolla.png";
+
+alga.src = "imatges/alga.png";
+
+
+alga2_img.src = "imatges/alga2.png";
+
+coral_img.src = "imatges/coral.png";
+
+
+castell_img.src = "imatges/castell.png";
+
+fons1_img.src = "imatges/fons1.png";
+
+
+fons2_img.src = "imatges/fons2.png";
+
+
+onada_img.src = "imatges/onada.png";
+
+pinso_img.src = "imatges/pinso.png";
 
 function activar_peixera(id) {
   ctx.fillText("Obtenint peixos de la peixera #" + id, centerX, centerY + 70);
@@ -403,10 +427,11 @@ function moure_peixos() {
 }
 
 function onades(){
+
   ample = onada_img.width
   n_onades = canvas.width/ample
   for (let i = -2; i < n_onades; i++) {
-    ctx.drawImage(onada_img, ample*i+(counter%ample), 0);
+    ctx.drawImage(onada_img,(ample*i+(counter%ample)), 0);
     
   }
 

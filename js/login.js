@@ -1,7 +1,7 @@
 var resposta 
 function login(){
     $.ajax({
-        url:'http://127.0.0.1:8000/api/user/login',
+        url:direccio+'user/login',
         data:{
           'email': document.getElementById("mail").value,
           "password": document.getElementById("password").value ,

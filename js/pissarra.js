@@ -103,7 +103,7 @@ function Enviar() {
   var copia = document.getElementById("pissarra");
   imatge = copia.toDataURL("image/png");
   $.ajax({
-    url:'http://127.0.0.1:8000/api/guardar_peix',
+    url:direccio+'guardar_peix',
     data:{
       'imatge':imatge,
       "text": text ,

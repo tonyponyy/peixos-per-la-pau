@@ -12,7 +12,7 @@ if (sessionStorage.getItem("id_peixera")){
 
 function ultima_peixera(){
     $.ajax({
-        url:'http://127.0.0.1:8000/api/last_fishbowl/',
+        url:direccio+'last_fishbowl/',
     
         type:'get',
         success: function (response) {
@@ -28,7 +28,7 @@ function ultima_peixera(){
 }
 
 $.ajax({
-    url:'http://127.0.0.1:8000/api/last_5_fishbowl/',
+    url:direccio+'last_5_fishbowl/',
 
     type:'get',
     success: function (response) {

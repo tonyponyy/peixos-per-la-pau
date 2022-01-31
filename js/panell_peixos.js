@@ -1,7 +1,7 @@
 
 
 $.ajax({
-    url:'http://127.0.0.1:8000/api/is_online',
+    url:direccio+'is_online',
     data:{
         "token": sessionStorage.token
   },
@@ -23,7 +23,7 @@ $.ajax({
 
 
 $.ajax({
-    url:'http://127.0.0.1:8000/api/last_fishbowl/',
+    url:direccio+'last_fishbowl/',
     data:{
     
   },
@@ -42,7 +42,7 @@ $.ajax({
 
 
  $.ajax({
-    url:'http://127.0.0.1:8000/api/is_super',
+    url:direccio+'is_super',
     data:{
         "token": sessionStorage.token
     
@@ -79,7 +79,7 @@ $.ajax({
  function select_change(id){
     //id = document.getElementById("select_peixera").value 
     $.ajax({
-        url:'http://127.0.0.1:8000/api/peixera/'+id,
+        url:direccio+'peixera/'+id,
         data:{
 
       },
@@ -101,7 +101,7 @@ $.ajax({
  function no_visibles(){
     //id = document.getElementById("select_peixera").value 
     $.ajax({
-        url:'http://127.0.0.1:8000/api/invisible_fish',
+        url:direccio+'invisible_fish',
         data:{
             "token": sessionStorage.token
       },
@@ -153,7 +153,7 @@ $.ajax({
 
  function ocultar(id){
     $.ajax({
-        url:'http://127.0.0.1:8000/api/visibility_fish',
+        url:direccio+'visibility_fish',
         data:{
             "token": sessionStorage.token,
             "id": id
@@ -183,7 +183,7 @@ $.ajax({
     if (window.confirm("Segur que vols esborrar el peix ?")){
 
         $.ajax({
-            url:'http://127.0.0.1:8000/api/destroy_fish',
+            url:direccio+'destroy_fish',
             data:{
                 "token": sessionStorage.token,
                 "id": id

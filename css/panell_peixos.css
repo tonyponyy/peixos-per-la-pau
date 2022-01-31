@@ -67,3 +67,52 @@ li{
   background-color: lightseagreen;
 }
 
+#peu{
+  margin-top: 1%;
+  background-color: lightseagreen;
+  color:white;
+  border-top:3px solid black;
+  
+
+}
+#peu a{
+  text-decoration: none;
+  font-weight: bold;
+  color:black;
+  font-size: 14px;
+}
+#quisoc{
+  margin-left: 27%;
+  margin-right: 20%
+}
+
+#imatge_peu {
+  width: 12%;
+  margin-top: 12px;
+  margin-left: 42%;
+
+  filter: drop-shadow(2px 2px  white) 
+          drop-shadow(-2px -2px  white);
+ 
+}
+
+table{
+  margin-left: 5%;
+}
+
+#barra_superior{
+  background-color: lightseagreen;
+  padding: 12px;
+  height: 73px;
+}
+  #barra_superior{
+     text-align: right;
+      border-bottom: 3px solid black;
+   }
+  #barra_superior img{
+     width: 20%;
+    margin-right: 2%
+   }
+
+
+

@@ -69,5 +69,10 @@ Route::post('/user/validate_user', [AuthController::class, 'validate_user'])->mi
 Route::get('/user_all/', [UserController::class, 'show_all_users'])->middleware('isSuperAdmin');
 
 //borra usuario
+Route::post('/delete_user/{id}', [UserController::class, 'delete_user'])->middleware('isSuperAdmin');
+//validar
+Route::post('/validate_user/{id}', [UserController::class, 'validate_user'])->middleware('isSuperAdmin');
+// hacer super admin 
+Route::post('/super_user/{id}', [UserController::class, 'super_user'])->middleware('isSuperAdmin');
 
 //oculta peix
