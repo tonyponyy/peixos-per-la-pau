@@ -43,6 +43,7 @@ class fishController extends Controller
         $fish->nom = $request->input('nom');
         $fish->id_peixera = intval(($ultim_peix)/10)+1;
         $fish->visible = true;
+        $fish->feed = true;
         $res = $fish->save();
 
         //obtenim el identificador    
@@ -164,6 +165,19 @@ class fishController extends Controller
         
 
     }
+
+    public function feed_fish($id)
+        {
+
+            $fish = Fish::find($id);
+            $fish->feed = !$fish->feed;
+            $res = $fish->save();
+            if ($res) {
+            return response()->json(['message' => 'ok'], 201);
+            }
+            return response()->json(['message' => 'error'], 500);
+            }
+
 
 
 

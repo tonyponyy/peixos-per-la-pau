@@ -63,3 +63,6 @@ Agregamos la columna validated a users
 
 php artisan make:migration add_validated_to_users
 
+Añadimos la columna feed a los peces
+
+php artisan make:migration add_feed_to_fishes

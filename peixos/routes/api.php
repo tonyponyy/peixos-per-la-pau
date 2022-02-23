@@ -16,6 +16,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::group(['middleware' => ['cors']], function () {
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -42,8 +44,8 @@ Route::post('/visibility_fish', [fishController::class, 'set_fish_visible'])->mi
 Route::post('/destroy_fish', [fishController::class, 'destroy'])->middleware('require_token');
 //pixos invisibles
 Route::get('/invisible_fish', [fishController::class, 'get_fish_invisible'])->middleware('require_token');
-
-
+//alimenta al peix
+Route::post('/feed/{id}', [fishController::class, 'feed_fish']);
 
 //comprovamos si es super_admin
 Route::get('/is_super', function () {
@@ -76,3 +78,4 @@ Route::post('/validate_user/{id}', [UserController::class, 'validate_user'])->mi
 Route::post('/super_user/{id}', [UserController::class, 'super_user'])->middleware('isSuperAdmin');
 
 //oculta peix
+});
