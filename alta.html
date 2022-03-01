@@ -5,19 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Login</title>
+    <title>Alta</title>
     <script src="./js/direccio.js"></script>
     <script src="./js/jquery-3.6.0.min.js""></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/panell_peixos.css">
-
 
 </head>
 <body>
   <div id="barra_superior"><img src="imatges/logo.png"> </div>
     <div id="container">
-    <h1>Login</h1>
+    <h1>Alta</h1>
     <div class="widget">
    
         <div class="mb-3">
@@ -25,25 +24,32 @@
           <input type="email" class="form-control" id="mail" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">Contrasenya</label>
           <input type="password" class="form-control" id="password">
         </div>
-        <button type="submit" class="envia btn btn-primary" onclick="login()">Envia</button>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="name">
+        </div>
+        <button type="submit" class="envia btn btn-primary" onclick="alta()">Envia</button>
         <br>
-      <a href="alta.html">Donarse d'alta</a>
+      <p> Un cop comprovat la identitat de la persona sol·licitant, se li aplicarà els rols d'administrador </p>
     </div>
 </div>
 
+
 <div id="peu">
-  <img id="imatge_peu" src="imatges/logo.png">
-  <div id="links_footer">
-<a id= "quisoc" href="http://www.antoniandreu.com">Antoni Andreu 2022 </a>
-<a id="panell" href="index.html">Tornar a l'index</a>
+    <img id="imatge_peu" src="imatges/logo.png">
+    <div id="links_footer">
+ <a id= "quisoc" href="http://www.antoniandreu.com">Antoni Andreu 2022 </a>
+ <a id="panell" href="index.html">Tornar a l'index</a>
+
 </div>
 
 
+
 </body>
-<script src="js/login.js"></script>
+<script src="js/alta.js"></script>
 
 
 </html>

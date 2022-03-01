@@ -143,7 +143,7 @@ function activar_peixera(id) {
   ctx.fillText("Obtenint peixos de la peixera #" + id, centerX, centerY + 70);
 
   $.ajax({
-    url: "http://127.0.0.1:8000/api/peixera/" + id,
+    url: direccio +"peixera/" + id,
 
     type: "get",
     success: function (response) {
@@ -224,6 +224,32 @@ function imprimir_peixos_index() {
         '<p class="targeta_peix_text"> Desitg : ' +
         tots_els_peixos[index].text +
         "</p>";
+      percentatge_gana = gana(transforma_data(tots_els_peixos[index].updated_at)) 
+      color_gana = "red"
+      emo = "😭"
+
+      if (percentatge_gana> 25){
+        color_gana = "yellow"
+        emo = "🥺"
+      }
+      if (percentatge_gana> 50){
+        color_gana = "orange"
+        emo = "😑"
+      }
+      if (percentatge_gana> 75){
+        color_gana = "green"
+        emo = "😁"
+      }
+      
+
+
+
+
+      inner += '<p id= "label_gana"> Nivell de gana : </p>'
+      inner += '<div class="container_gana">'
+      inner += '<div class="barra_gana" style="width:'+percentatge_gana+'%; background-color:'+color_gana+'"></div>'
+      inner += '<p id="emo">'+emo+'</p>'
+      inner += '</div>'
       inner += '<p id="temps">Viu a la peixera des de '+ temps(transforma_data(tots_els_peixos[index].created_at)) +'.<p>'  
       inner += "</div>";
     }
@@ -350,6 +376,7 @@ function moure_peixos() {
         peix.y < pinsos[peix.id%9].y + 80 &&
         80 + peix.y > pinsos[peix.id%9].y) {
           pinsos.splice(0, 1)
+          alimentar(peix.id)
      }
 
 
@@ -661,6 +688,16 @@ function  angulo(x,y){
   
 }
 
+function gana(data){
+
+  ara = Date.now()
+  segons = (ara - data)/1000 ;
+  return 100 - parseInt(segons/2592);
+}
+
+
+
+
 function temps(data){
 
   ara = Date.now()
@@ -700,6 +737,31 @@ function temps(data){
 
 
 }
+
+
+function alimentar(id){
+
+  
+  $.ajax({
+    url:direccio+'feed/'+id,
+    data:{
+      'id':id,
+
+  },
+    type:'post',
+    success: function (response) {
+             
+
+    },
+    
+    error:function(){
+     
+
+    }
+ });
+
+}
+
 
 
 

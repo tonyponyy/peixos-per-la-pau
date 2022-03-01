@@ -16,7 +16,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-
+Route::group(['middleware' => ['cors']], function () {
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -78,3 +78,4 @@ Route::post('/validate_user/{id}', [UserController::class, 'validate_user'])->mi
 Route::post('/super_user/{id}', [UserController::class, 'super_user'])->middleware('isSuperAdmin');
 
 //oculta peix
+});

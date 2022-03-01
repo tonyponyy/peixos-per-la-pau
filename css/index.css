@@ -12,9 +12,13 @@
     
 }
 
+html{
+   overflow-x:hidden;
+}
 
-
-
+#logos{
+  margin-left: 20%;
+}
 
 #intro{
   font-size: 23px;
@@ -88,7 +92,6 @@ h4{
 
 body{
   
-  background-image: url("/imatges/peix.png");
   background-color: var(--fons_pagina);
     
 }
@@ -99,6 +102,19 @@ body{
   padding: 12px;
   height: 73px;
 }
+#logos img{
+   width: 200px;
+}
+#logos{
+   background-color: var(--fons_capcellera);
+  display: flex;
+ 
+}
+#logodreta, #logoesquerra{
+  width: 50%;
+  margin-bottom: 12px;
+}
+
 
 a{
   text-decoration: none;
@@ -116,9 +132,14 @@ a{
              -6px 5px 5px rgba(0,0,0,0.3);
 }
 
-
+#logos_capcelera{
+  text-align: left;
+  width: 60%;
+  margin-left: 2%;
+}
    
   #barra_superior{
+    display: flex;
      text-align: right;
       border-bottom: 3px solid black;
    }
@@ -127,6 +148,13 @@ a{
     margin-right: 2%
    }
    
+#logo_peixos{
+  position: absolute;
+  margin-left: 80%;
+  height: 100px;
+  width: 100px;
+}
+
    li{
      text-align: center;
      list-style: none;
@@ -184,13 +212,39 @@ h3{
    transform: rotate(-2deg);
 }
 #panell_menjar{
+  margin-top:-50px;
   font-size: 23px;
   color:black;
   margin-left: 5%;
   background-color: #ad6914;
   width: 23%;
+  height: 50px;
   border-radius: 32px;
 }
+
+#boto_fullscreen img{
+  width: 23px;
+  filter: invert(1);
+}
+
+
+#boto_fullscreen{
+  position:relative;
+  top:-64px;
+  color:white;
+  margin-left:  90%;
+  background-color: black;
+  width: 43px;
+  height: 45px;
+  border-radius: 12px;
+  border:2px solid white;
+}
+
+#boto_fullscreen:hover{
+background-color: darkgray;
+}
+
+
 
 #panell_menjar:hover{
   color:black;
@@ -262,4 +316,156 @@ h1{
  
 }
 
+.container_gana{
+  background-color: gray;
+  height:40px;
+  width: 30%;
+  margin: auto;
+  display:flex;
+}
 
+#emo{
+  margin-right:   -1200px;
+  font-size: 33px;
+}
+
+.barra_gana{
+  height: 40px;
+  margin-right: 12px;
+}
+
+#label_gana{
+  margin-top: 42px;
+}
+
+#temps{
+  margin-top:22px;
+}
+
+#llicencia{
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px;
+  font-size:medium;
+  padding-inline:  102px;
+  text-align: center;
+  background-color: var(--fons_footer)
+  
+}
+
+@media (max-width: 800px) {
+  
+  .targeta_peix{
+    width: 90%;
+    font-size:23px;
+    margin-left: -23px;
+  }
+  #temps{
+  margin-top:2px;
+}
+  #label_gana{
+  margin-top: 12px;
+}
+
+  .targeta_peix img{
+    width: 100%
+  }
+  #container_targetes{
+    width: 90%
+  }
+  #panell_menjar{
+    width: 70%;
+    margin: auto;
+  }
+  #capcelera{
+    display:grid
+  }
+  #select_peixera{
+    margin: auto;
+    width: 80%;
+    margin-top: 12px;
+  }
+  #capcelera a{
+    width: 100%;
+    display: none;
+  }
+  
+  #numero_peixera{
+    margin:auto;
+    margin-top:12px;
+    width: 94%;
+    
+  }
+  #canvas{
+    margin: auto;
+    width: 100%;
+  }
+  
+  #barra_superior img{
+    width: 50%;
+    margin:auto;
+  }
+  #peu img{
+    width: 50%;
+    margin-left: 22%
+  }
+  #quisoc,#panell{
+    margin: 4px
+  }
+  #quisoc{
+   margin-left: 10px;
+
+  }
+
+  #links_footer{
+    display:flex;
+  }
+  #links_footer a{
+    margin:auto;
+  }
+  #links_footer a{
+
+    font-size:13px;
+  }
+
+  #barra_superior img{
+    width: 130px;    
+  }
+  
+  #logo_peixos{  
+  position: absolute;
+  top:43px;
+  left: 37%;  
+  height: 60px;
+}
+  #logos{
+  margin-left:0px;
+}
+  #logos_capcelera {
+   display: flex;
+    margin: auto;
+   
+  }
+  #logos_capcelera img {
+  padding: 6px;  
+   
+  }
+  
+  #boto_fullscreen{
+  position:relative;
+  top:-64px;
+  color:white;
+  margin-left:  85%;
+  background-color: black;
+  width: 43px;
+  height: 40px;
+  border-radius: 12px;
+}
+  
+  
+  
+}
+
+body{
+   overflow-x: hidden;
+}
